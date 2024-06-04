@@ -11,7 +11,11 @@ async function submitedApi() {
   let userUrl = url + userInput.value;
   try {
     let response = await fetch(userUrl);
+    if(!response.ok){
+      throw new Error(`UH OH! ERROR: ${response.status}`) 
+    }
     let data = await response.json();
+
     console.log(data);
     results.innerHTML = JSON.stringify(data);
   } catch (error) {
