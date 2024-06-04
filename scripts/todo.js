@@ -1,14 +1,17 @@
 "use strict";
 window.onload = () => {
   let button = document.querySelector("#theButton");
-  button.addEventListener("click", submitedApi);
+  button.addEventListener("click", todoID);
 };
 
-async function submitedApi() {
+async function todoID() {
   let userInput = document.querySelector("#todoId");
   let results = document.querySelector("#results");
   let url = "https://jsonplaceholder.typicode.com/todos/";
   let userUrl = url + userInput.value;
+  if(userInput.value ===''){
+   return results.innerHTML = 'Nice try! Enter an ID'
+  }
   try {
     let response = await fetch(userUrl);
     if(!response.ok){
@@ -17,6 +20,7 @@ async function submitedApi() {
     let data = await response.json();
 
     console.log(data);
+    
     results.innerHTML = JSON.stringify(data);
   } catch (error) {
     console.log(error);
