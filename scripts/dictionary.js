@@ -19,7 +19,7 @@ async function searchWord() {
     }
     let data = await response.json();
 data.forEach((datas,idx)=>{
-    results.innerHTML = JSON.stringify(datas.meanings[idx].definitions);
+    results.innerHTML = `<pre>${JSON.stringify(datas.meanings[idx].definitions)}</pre>`
 })
     
     
